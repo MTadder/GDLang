@@ -7,10 +7,36 @@
     <Nullable>enable</Nullable>
     <StartupObject>MTLang.Program</StartupObject>
     <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
+    <GenerateDocumentationFile>False</GenerateDocumentationFile>
+    <Title>MTLanguage Compiler</Title>
+    <Version>0.1.0</Version>
+    <Authors>MTadder</Authors>
+    <Company>MTLaboratory</Company>
+    <Description>a language to generate fully functional (and interlinked) resources (classes / scenes) for Godot.</Description>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <IncludeSymbols>True</IncludeSymbols>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <AnalysisLevel>latest-recommended</AnalysisLevel>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>embedded</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MTLib\MTLib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -27,10 +27,25 @@ internal static class Lexer {
         END_OF_STATEMENT, // ;
 
         DECLARATION, // set
+        NATIVE_TYPE, // set
         BINARY_OPERATOR, // [+-*/]
     }
+    private static readonly String[] nativeTypes = [
+        "AABB", "Array", "Basis", "Callable", "Color", "Dictionary",
+        "Int", "Float", "Bool", "Vector2", "Vector3", "NodePath", "Object",
+        "PackedByteArray", "PackedColorArray", "PackedFloat32Array",
+        "PackedFloat64Array", "PackedInt32Array", "PackedInt64Array",
+        "PackedStringArray", "PackedVector2Array", "PackedVector3Array",
+        "Plane", "Projection", "Quaternion", "Rect2", "Rect2i",
+        "RID", "Signal", "String", "StringName", "Transform2D",
+        "Transform3D", "Vector2i", "Vector3i", "Vector4", "Vector4i",
+    ];
     private static readonly Dictionary<String, TokenType> keywords = new(){
         { "set", TokenType.DECLARATION },
+        { "class", TokenType.DECLARATION },
+        { "make", TokenType.DECLARATION }, // TODO v
+        { "venue", TokenType.DECLARATION },
+        { "summon", TokenType.DECLARATION },
     };
     internal record class Token(String Chunk, TokenType Type) {
         internal Token(Char chunk, TokenType type) : this(chunk.ToString(), type) { }

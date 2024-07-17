@@ -2,18 +2,17 @@
 * Each `Chunk` will correspond to a line of code in `Gdscript`.
 * All newlines and whitespace are ignored in MTLang.
 * Chronology is determined from the literal call sequence.
-* A `Chunk` is denoted by the `{` and `}` characters.
 # Syntax Overview
+## Function Invocation
+* `func_name([args])` or `func_name!`
 ## Variable Declarations (with getters/setters)
-* `^variable_name{type[, instantiation_params]}^`
-* `$variable_name{('set' | 'get')[, Chunk]}$`
+* `let variable_name([type = 'Variant']) = value`
 ## Class Declarations (with parameters)
-* `&class_name[{[parameters]}][::extend_class{[parameters]}]&`
+* `class class_name([extends]) { [...] }`
 ## Object / Scene instantiation (with parameters)
-* `<object_name{[parameters]}>` -- calls `object_name.new([parameters]);`.
-* `@<scene_name{[parameters]}>` -- sets the scene tree to this packed scene file (.tscn | .scn).
+* `make object_name([args])` -- calls `object_name.new([args]);`.
+* `let x(Button) = make Button!;` -- calls `var x:Button = Button.new()`
+* `venue packed_scene_var` -- calls `get_tree().change_scene_to_packed(packed_scene_var)`
+* `summon packed_scene_var` -- calls `get_tree().current_scene.add_child(packed_scene_var)`
 ## Flow Control
-* `branch clause_chunk : (if_true, if_false)`
-## Examples
-* `{inplace{"other_file.mtl"}};` -- Copies the MTLang code from `other_file.mtl` to this corresponding `Chunk`.
-* `{&Tetrad{x, y, z, o}::Dyad{!}&}` -- Declares class `Tetrad` which extends the `Dyad` class.
+TODO

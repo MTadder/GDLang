@@ -1,7 +1,6 @@
 ﻿namespace MTLang;
 
 internal class Program {
-    internal static String mtlibVersion = "0.1.0";
     internal static String replVersion = "0.1.0";
 
     internal static MTLib.Terminal.Style errStyle = new(ConsoleColor.Red);
@@ -10,14 +9,14 @@ internal class Program {
     internal static MTLib.Terminal.TypewriterConsoleWriter nowaitWriter = new(2);
     internal static MTLib.Terminal.TypewriterConsoleWriter writer = new(15);
     static void Main(String[] args) {
-        mainStyle.WriteLine($"MTLang v{mtlibVersion} (REPL v{replVersion})", writer);
+        mainStyle.WriteLine($"MTLang v{MTLib.MetaInfo.VersionNumber} (REPL v{replVersion})", writer);
 
         while (true) {
             mainStyle.Write("~> ", writer);
             var old = inputStyle.Push();
             String? input = Console.ReadLine();
             _ = old.Push();
-            if (input is null || input.Equals("exit"))
+            if (input is null || input.Equals("exit", StringComparison.Ordinal))
                 break;
             try {
                 mainStyle.WriteLine(String.Join("\t\n", Lexer.Token.Tokenize(input)), writer);
